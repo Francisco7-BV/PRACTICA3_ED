@@ -7,6 +7,9 @@ longitud :: List a -> Int
 longitud Void = 0
 longitud (Node a lista) = 1 + longitud lista
 
+--2. Contencion de un elemento en una lista:
+--La funcion estaContenido calcula si un elemento esta contenido en una estructura lista, de ser
+--el caso, devuelve True, y en caso contrario False.
 
 estaContenido :: Eq a => List a -> a -> Bool
 estaContenido Void a = False
@@ -23,9 +26,6 @@ convertirAEstructura :: [a] -> List a
 convertirAEstructura [] = Void
 convertirAEstructura (x:xs) = Node x (convertirAEstructura xs)
 
-convertirALista :: List a -> [a]
-convertirALista = undefined
-
 
 --5. Convertir en un conjunto nuestra nueva estructura de lista:
 --La funcion conjunto convierte en un conjunto un ejemplar de nuestra nueva estructura lista, es
@@ -36,10 +36,6 @@ conjunto Void = Void
 conjunto (Node a lista) = if estaContenido lista a 
                                             then conjunto lista
                                             else Node a (conjunto lista)
-
-
-eliminarIndice :: List a -> Int -> List a
-eliminarIndice = undefined
 
 --7. Agregar un elemento en un  indice especifico.:
 --La funcion insertarIndice agrega el elemento en el  idice especificado que sera pasado como
@@ -55,17 +51,6 @@ eliminarIndice = undefined
 --elementos restantes, se desplazan un lugar, teniendo la nueva lista, Node 1 (Node 4 (Node 2
 --(Node 3 Void)))
 
---insertarIndice :: List a -> Int -> a -> List a
---insertarIndice Void i a = if i > 0
-                       -- then Node a Void
-                       -- else error "Indice fuera del rango permitido"
---insertarIndice (Node a lista) i b = if (i > 0) && (i < longitud (Node a lista) -1)
-                               -- then if a == i 
-                                   --     then Node b lista
-                                   --     else insertarIndice lista
-                            --    else error "Indice fuera del rango permitido"
-
-
 
 insertarIndice :: List a -> Int -> a -> List a
 insertarIndice Void i b = if i == 0    
@@ -76,10 +61,6 @@ insertarIndice (Node a lista) i b = if i == 0
                                     else if i > 0     
                                         then Node a (insertarIndice lista (i - 1) b)  
                                         else error "Indice fuera del rango permitido"
-
-
-recorrerLista :: List a -> Int -> List a
-recorrerLista = undefined
 
 
 
