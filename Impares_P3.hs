@@ -26,6 +26,14 @@ convertirAEstructura :: [a] -> List a
 convertirAEstructura [] = Void
 convertirAEstructura (x:xs) = Node x (convertirAEstructura xs)
 
+--4. Convertir nuestra nueva estructura de lista a una lista ya definida en haskell:
+--La función convertirALista convierte un ejemplar de nuestra nueva estructura de lista a una
+--lista ya definida en haskell. Y se prueba de la siguiente manera.
+
+convertirALista :: List a -> [a]
+convertirALista Void = []
+convertirALista (Node a lista) = a : convertirALista lista
+
 
 --5. Convertir en un conjunto nuestra nueva estructura de lista:
 --La funcion conjunto convierte en un conjunto un ejemplar de nuestra nueva estructura lista, es
@@ -36,6 +44,16 @@ conjunto Void = Void
 conjunto (Node a lista) = if estaContenido lista a 
                                             then conjunto lista
                                             else Node a (conjunto lista)
+                                            
+--6. Eliminar un elemento en un índice específico.:
+--La función eliminarIndice elimina el elemento posicionado en un índice específico que será
+--pasado como parámetro de la función. Y se prueba de la siguiente manera.
+
+eliminarIndice :: List a -> Int -> List a
+eliminarIndice Void n = error "no hay elemento a eliminar"
+eliminarIndice (Node a lista) n = if n == 0
+                                    then lista
+                                    else Node a (eliminarIndice lista (n-1)) 
 
 --7. Agregar un elemento en un  indice especifico.:
 --La funcion insertarIndice agrega el elemento en el  idice especificado que sera pasado como
@@ -61,6 +79,15 @@ insertarIndice (Node a lista) i b = if i == 0
                                     else if i > 0     
                                         then Node a (insertarIndice lista (i - 1) b)  
                                         else error "Indice fuera del rango permitido"
+
+--8. Recorrer n veces a la derecha los elementos de nuestra nueva estructura lista.:
+--La función recorrerLista recorre n veces a la derecha los elementos de un ejemplar de nuestra
+--nueva estructura lista . Y se prueba de la siguiente manera
+
+recorrerLista :: List a -> Int -> List a
+recorrerLista Void n = Void
+recorrerLista lista 0 = lista
+recorrerLista (Node a lista) n = recorrerLista (insertarIndice lista (longitud lista) a) (n-1)
 
 
 
