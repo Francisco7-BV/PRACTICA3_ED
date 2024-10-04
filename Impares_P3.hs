@@ -50,8 +50,8 @@ conjunto (Node a lista) = if estaContenido lista a
 --pasado como parámetro de la función. Y se prueba de la siguiente manera.
 
 eliminarIndice :: List a -> Int -> List a
-eliminarIndice Void n = error "no hay elemento a eliminar"
-eliminarIndice (Node a lista) n = if n == 0
+eliminarIndice Void b = error "no hay elemento a eliminar"
+eliminarIndice (Node a lista) b = if b == 0
                                     then lista
                                     else Node a (eliminarIndice lista (n-1)) 
 
@@ -85,9 +85,9 @@ insertarIndice (Node a lista) i b = if i == 0
 --nueva estructura lista . Y se prueba de la siguiente manera
 
 recorrerLista :: List a -> Int -> List a
-recorrerLista Void n = Void
+recorrerLista Void b = Void
 recorrerLista lista 0 = lista
-recorrerLista (Node a lista) n = recorrerLista (insertarIndice lista (longitud lista) a) (n-1)
+recorrerLista (Node a lista) b = recorrerLista (insertarIndice lista (longitud lista) a) (b-1)
 
 
 
