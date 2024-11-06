@@ -51,9 +51,10 @@ conjunto (Node a lista) = if estaContenido lista a
 
 eliminarIndice :: List a -> Int -> List a
 eliminarIndice Void b = error "no hay elemento a eliminar"
-eliminarIndice (Node a lista) b = if b == 0
-                                    then lista
-                                    else Node a (eliminarIndice lista (b-1)) 
+eliminarIndice (Node a lista) 0 = lista
+eliminarIndice (Node a lista) b = if b < 0 || b > longitud lista 
+                                  then error "Indice fuera del rango permitido"
+                                  else Node a (eliminarIndice lista (b-1))
 
 --7. Agregar un elemento en un  indice especifico.:
 --La funcion insertarIndice agrega el elemento en el  idice especificado que sera pasado como
